@@ -17,15 +17,12 @@ const getTrendingMovies = async (page = 1) => {
   }
 };
 
-const getMovieByName = async (page = 1, query = '') => {
+const getMovieByName = async query => {
   try {
     const { data } = await axios.get(`search/movie`, {
-      params: {
-        page,
-        query,
-      },
+      params: { query },
     });
-
+    console.log(data);
     return data;
   } catch (error) {
     throw new Error('Oops, there is no movies');
