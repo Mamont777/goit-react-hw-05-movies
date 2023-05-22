@@ -16,9 +16,12 @@ const Trailer = () => {
       try {
         const data = await getMovieVideo(movieId);
         const trailer = data.results.filter(item => item.type === 'Trailer')[0];
+
         if (trailer) {
           setTrailerUrl(trailer.key);
         }
+
+        setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
       } catch (error) {
         console.log(error.message);
       } finally {

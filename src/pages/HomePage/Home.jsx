@@ -7,7 +7,7 @@ import Button from '../../components/Button/Button';
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTrending(currentPage) {
@@ -28,12 +28,17 @@ const Home = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      <h2 style={{ textShadow: '-6px 7px 6px rgba(34,17,153,0.47)' }}>
-        Trending today
-      </h2>
-      <MovieList movies={trendingMovies} />
-      <Button onLoadMore={handleLoadMore} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <h2 style={{ textShadow: '-6px 7px 6px rgba(34,17,153,0.47)' }}>
+            Trending today
+          </h2>
+          <MovieList movies={trendingMovies} />
+          <Button onLoadMore={handleLoadMore} />
+        </>
+      )}
     </>
   );
 };
