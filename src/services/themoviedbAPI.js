@@ -25,11 +25,71 @@ const getMovieByName = async (page = 1, query = '') => {
         query,
       },
     });
-    console.log(data);
+
     return data;
   } catch (error) {
     throw new Error('Oops, there is no movies');
   }
 };
 
-export { getTrendingMovies, getMovieByName };
+const getMovieById = async movieId => {
+  try {
+    const { data } = await axios.get(`movie/${movieId}`, {
+      params: {
+        id: movieId,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    throw new Error('Oops, there is no movies');
+  }
+};
+
+const getMoviesCast = async movieId => {
+  try {
+    const { data } = await axios.get(`movie/${movieId}/credits`, {
+      params: {
+        id: movieId,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Oops, there is no movies');
+  }
+};
+
+const getMovieReviews = async movieId => {
+  try {
+    const { data } = await axios.get(`movie/${movieId}/reviews`, {
+      params: {
+        id: movieId,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Oops, there is no movies');
+  }
+};
+
+const getMovieVideo = async movieId => {
+  try {
+    const { data } = await axios.get(`movie/${movieId}/videos`, {
+      params: {
+        id: movieId,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Oops, there is no movies');
+  }
+};
+
+export {
+  getTrendingMovies,
+  getMovieByName,
+  getMovieById,
+  getMoviesCast,
+  getMovieReviews,
+  getMovieVideo,
+};

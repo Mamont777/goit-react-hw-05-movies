@@ -38,6 +38,7 @@ export const SearchFormInput = styled(Field)`
   transition: 0.3s ease;
   border: 2px solid;
   border-image: conic-gradient(#00f260, #0575e6, #64f38c) 1;
+  color: whitesmoke;
 
   ::placeholder {
     font: inherit;
