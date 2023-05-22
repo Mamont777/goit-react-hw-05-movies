@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { useLocation, useParams, Outlet, Link } from 'react-router-dom';
 import { Rating } from '@mui/material';
-import moment from 'moment';
+
 import { getMovieById } from '../../services/themoviedbAPI.js';
 import {
   BackLink,
@@ -18,16 +18,12 @@ import {
   AdditionalItem,
 } from './MovieDetails.styled';
 import Loader from '../../components/Loader/Loader';
-
-function getClassByRate(vote) {
-  if (vote >= 8) {
-    return 'green';
-  } else if (vote > 6) {
-    return 'orange';
-  } else {
-    return 'red';
-  }
-}
+import {
+  getClassByRate,
+  getReleaseYear,
+  formatReleaseDate,
+  formatRuntime,
+} from '../../helpers/Helpers';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -59,17 +55,11 @@ const MovieDetails = () => {
     status,
     runtime,
   } = movieDetails;
-  const releaseYear = release_date ? release_date.slice(0, 4) : '';
+
   const ratingClass = getClassByRate(vote_average);
-  const formattedReleaseDate = release_date
-    ? moment(release_date).format('MMM D, YYYY')
-    : '';
-  const toHoursAndMinutes = runtime => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = runtime % 60;
-    return `${hours}h ${minutes}m`;
-  };
-  const formattedRuntime = toHoursAndMinutes(runtime);
+  const releaseYear = getReleaseYear(release_date);
+  const formattedReleaseDate = formatReleaseDate(release_date);
+  const formattedRuntime = formatRuntime(runtime);
 
   return (
     <>

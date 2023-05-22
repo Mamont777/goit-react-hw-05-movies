@@ -1,5 +1,5 @@
 //
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Formik } from 'formik';
 import { ToastContainer, Slide, toast } from 'react-toastify';
@@ -29,24 +29,16 @@ const notifyOptions = {
 const Movies = () => {
   const [foundFilms, setFoundFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams({
-    page: 1,
-    query: '',
-  });
-  const params = useMemo(
-    () => Object.fromEntries([...searchParams]),
-    [searchParams]
-  );
-  const page = Number(params.page || 1);
-  let { query } = params;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') ?? '';
 
   useEffect(() => {
-    if (!page) return;
+    if (!searchQuery) return;
 
     async function fetchMovies() {
       try {
         setIsLoading(true);
-        const data = await getMovieByName(page, query);
+        const data = await getMovieByName(searchQuery);
 
         setFoundFilms(data.results);
       } catch (error) {
@@ -56,11 +48,10 @@ const Movies = () => {
       }
     }
     fetchMovies();
-    setSearchParams({ page, query });
-  }, [page, query, setSearchParams]);
+  }, [searchQuery]);
 
   const visibleMovies = foundFilms.filter(movie =>
-    movie.title.toLowerCase().includes(query.toLowerCase())
+    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const updateQueryString = query => {
@@ -76,7 +67,7 @@ const Movies = () => {
       return toast.info('Please enter a search query', notifyOptions);
     }
 
-    const data = await getMovieByName(page, inputQuery);
+    const data = await getMovieByName(searchQuery, inputQuery);
 
     setFoundFilms(data.results);
 

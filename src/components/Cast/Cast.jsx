@@ -37,21 +37,16 @@ const Cast = () => {
             movieCast.map(({ id, name, character, profile_path }) => (
               <CastItem key={id}>
                 <div>
-                  {profile_path ? (
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-                      alt={`Poster ${name}`}
-                      width="280"
-                      height="420"
-                    />
-                  ) : (
-                    <img
-                      src={noImage}
-                      alt={`Poster ${name}`}
-                      width="280"
-                      height="500"
-                    />
-                  )}
+                  <img
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                        : noImage
+                    }
+                    alt={`Poster ${name}`}
+                    width="280"
+                    height="420"
+                  />
                 </div>
                 <CastDesc>{name}</CastDesc>
                 <CastDesc>Character: {character}</CastDesc>
