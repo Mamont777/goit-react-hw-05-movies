@@ -15,13 +15,13 @@ const Trailer = () => {
     async function fetchTrailer() {
       try {
         const data = await getMovieVideo(movieId);
-        const trailer = data.results.filter(item => item.type === 'Trailer')[0];
+        const trailer = data.results.find(item => item.type === 'Trailer');
 
         if (trailer) {
           setTrailerUrl(trailer.key);
+        } else {
+          toast.warning("Sorry, we don't have any trailer for this movie.");
         }
-
-        setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -43,9 +43,6 @@ const Trailer = () => {
           allowFullScreen
         ></iframe>
       )}
-      {trailerUrl === '' &&
-        !isLoading &&
-        toast.warning("Sorry, we don't have any trailer for this movie.")}
       <ToastContainer transition={Slide} />
     </>
   );
