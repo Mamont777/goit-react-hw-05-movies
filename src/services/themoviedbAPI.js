@@ -22,7 +22,6 @@ const getMovieByName = async query => {
     const { data } = await axios.get(`search/movie`, {
       params: { query },
     });
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error('Oops, there is no movies');

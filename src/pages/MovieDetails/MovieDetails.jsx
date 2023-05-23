@@ -29,7 +29,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [target, setTarget] = useState('');
+  const [activeTarget, setActiveTarget] = useState('');
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? '/movies');
 
@@ -60,6 +60,15 @@ const MovieDetails = () => {
   const releaseYear = getReleaseYear(release_date);
   const formattedReleaseDate = formatReleaseDate(release_date);
   const formattedRuntime = formatRuntime(runtime);
+  const showHide = target => {
+    if (isVisible && target === activeTarget) {
+      setIsVisible(false);
+      setActiveTarget('');
+    } else {
+      setIsVisible(true);
+      setActiveTarget(target);
+    }
+  };
 
   return (
     <>
@@ -133,40 +142,13 @@ const MovieDetails = () => {
           Additional Information
         </h4>
         <AdditionalList>
-          <AdditionalItem
-            onClick={() => {
-              if (target === 'cast') {
-                setIsVisible(prevState => !prevState);
-                return;
-              }
-              setIsVisible(true);
-              setTarget('cast');
-            }}
-          >
+          <AdditionalItem onClick={() => showHide('cast')}>
             <Link to="cast">Cast</Link>
           </AdditionalItem>
-          <AdditionalItem
-            onClick={() => {
-              if (target === 'reviews') {
-                setIsVisible(prevState => !prevState);
-                return;
-              }
-              setIsVisible(true);
-              setTarget('reviews');
-            }}
-          >
+          <AdditionalItem onClick={() => showHide('reviews')}>
             <Link to="reviews">Reviews</Link>
           </AdditionalItem>
-          <AdditionalItem
-            onClick={() => {
-              if (target === 'trailer') {
-                setIsVisible(prevState => !prevState);
-                return;
-              }
-              setIsVisible(true);
-              setTarget('trailer');
-            }}
-          >
+          <AdditionalItem onClick={() => showHide('trailer')}>
             <Link to="trailer">Trailer</Link>
           </AdditionalItem>
         </AdditionalList>
