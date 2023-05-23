@@ -28,17 +28,12 @@ const Home = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <h2 style={{ textShadow: '-6px 7px 6px rgba(34,17,153,0.47)' }}>
-            Trending today
-          </h2>
-          <MovieList movies={trendingMovies} />
-          <Button onLoadMore={handleLoadMore} />
-        </>
-      )}
+      {isLoading && <Loader />}
+      <h2 style={{ textShadow: '-6px 7px 6px rgba(34,17,153,0.47)' }}>
+        Trending today
+      </h2>
+      <MovieList movies={trendingMovies} />
+      {!isLoading && <Button onLoadMore={handleLoadMore} />}
     </>
   );
 };

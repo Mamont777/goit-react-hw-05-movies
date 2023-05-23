@@ -5,7 +5,7 @@ axios.defaults.params = {
   api_key: `a06c90b50d50fe78eda7fc28090f9f2b`,
 };
 
-const getTrendingMovies = async (page = 1) => {
+const getTrendingMovies = async page => {
   try {
     const { data } = await axios.get(`trending/movie/day`, {
       params: { page },

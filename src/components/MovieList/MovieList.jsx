@@ -11,8 +11,8 @@ const MovieList = ({ movies }) => {
   const location = useLocation();
   return (
     <MovieListStyled>
-      {movies.map(({ id, title, poster_path }) => (
-        <MovieItem key={id}>
+      {movies.map(({ id, title, poster_path }, index) => (
+        <MovieItem key={`${id}-${index}`}>
           <Link to={`/movies/${id}`} state={{ from: location }}>
             <MoviePoster
               src={

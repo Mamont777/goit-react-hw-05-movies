@@ -19,6 +19,11 @@ const Cast = () => {
         setIsLoading(true);
         const data = await getMoviesCast(movieId);
         setMovieCast(data.cast);
+        if (data.cast.length === 0) {
+          return toast.warning(
+            "We don't have any information about cast for this movies."
+          );
+        }
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -52,11 +57,6 @@ const Cast = () => {
                 <CastDesc>Character: {character}</CastDesc>
               </CastItem>
             ))}
-          {movieCast.length === 0 &&
-            !isLoading &&
-            toast.warning(
-              "We don't have any information about cast for this movies."
-            )}
         </CastList>
       )}
       <ToastContainer transition={Slide} />

@@ -22,7 +22,6 @@ const notifyOptions = {
 const Movies = () => {
   const [foundFilms, setFoundFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
 
@@ -35,13 +34,12 @@ const Movies = () => {
         const data = await getMovieByName(searchQuery);
         setFoundFilms(data.results);
         if (data.results.length === 0) {
-          setShowNotification(true);
+          return toast.error('No movies found with such title', notifyOptions);
         }
       } catch (error) {
         console.log(error.message);
       } finally {
         setIsLoading(false);
-        setShowNotification(false);
       }
     }
     fetchMovies();
@@ -56,9 +54,6 @@ const Movies = () => {
       {isLoading && <Loader />}
       <Search updateQueryString={updateQueryString} />
       {foundFilms.length > 0 && <MovieList movies={foundFilms} />}
-      {foundFilms.length === 0 &&
-        showNotification &&
-        toast.error('No movies found with such title', notifyOptions)}
       <ToastContainer />
     </>
   );
