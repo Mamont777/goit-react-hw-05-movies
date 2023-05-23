@@ -6,7 +6,7 @@ import ErrorBoundary from './components/ErrorBoundary.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/goit-react-hw-05-movies">
+    <BrowserRouter basename="/moviesFinder">
       <ErrorBoundary>
         <App />
       </ErrorBoundary>
