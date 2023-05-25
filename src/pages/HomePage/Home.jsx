@@ -3,6 +3,7 @@ import { getTrendingMovies } from 'services/themoviedbAPI';
 import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
 import Button from '../../components/Button/Button';
+import ScrollUp from '../../components/ScrollUp/ScrollUp';
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +35,7 @@ const Home = () => {
       </h2>
       <MovieList movies={trendingMovies} />
       {!isLoading && <Button onLoadMore={handleLoadMore} />}
+      <ScrollUp />
     </>
   );
 };
