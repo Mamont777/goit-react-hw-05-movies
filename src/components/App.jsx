@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'theme-ui';
+import theme from '../Styles/theme';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
 
@@ -14,17 +16,19 @@ const Trailer = lazy(() => import('./Trailer/Trailer.jsx'));
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-          <Route path="trailer" element={<Trailer />} />
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="trailer" element={<Trailer />} />
+          </Route>
+          <Route path="*" element={<PageNotFound />}></Route>
         </Route>
-        <Route path="*" element={<PageNotFound />}></Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </ThemeProvider>
   );
 };

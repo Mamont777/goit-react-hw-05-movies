@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ScrollUpBtn, ArrowIcon } from './ScrollUp.styled';
+import { ScrollUpBtn } from './ScrollUp.styled';
 import { TbArrowBigUpLinesFilled } from 'react-icons/tb';
 
 const ScrollUp = () => {
