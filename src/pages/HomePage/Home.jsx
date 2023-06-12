@@ -4,6 +4,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
 import Button from '../../components/Button/Button';
 import ScrollUp from '../../components/ScrollUp/ScrollUp';
+
 import { IconButton, ThemeProvider, createTheme } from '@mui/material';
 import { RiMoonLine, RiSunLine } from 'react-icons/ri';
 
@@ -13,7 +14,6 @@ const Home = () => {
       palette: {
         mode: 'light',
       },
-      // Rest of your theme configuration
     })
   );
 

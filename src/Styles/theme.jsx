@@ -22,15 +22,11 @@ const theme = createTheme({
     fontFamily: 'Arial, sans-serif',
     h1: {
       fontFamily: 'Helvetica, sans-serif',
-      fontSize: 32,
     },
     h2: {
       fontFamily: 'Helvetica, sans-serif',
-      fontSize: 24,
     },
-    body1: {
-      fontSize: 16,
-    },
+    body1: {},
   },
   spacing: [0, 4, 8, 16, 32, 64],
 });
