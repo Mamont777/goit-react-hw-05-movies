@@ -1,23 +1,38 @@
-const theme = {
-  config: {
-    initialColorModeName: 'light',
-  },
-  colors: {
-    text: '#000',
-    primary: '#07c',
-    modes: {
-      dark: {
-        text: '#fff',
-        primary: '#0cf',
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    text: {
+      primary: '#000',
+    },
+    primary: {
+      main: '#07c',
+    },
+    dark: {
+      text: {
+        primary: '#fff',
+      },
+      primary: {
+        main: '#0cf',
       },
     },
   },
-  fonts: {
-    body: 'Arial, sans-serif',
-    heading: 'Helvetica, sans-serif',
+  typography: {
+    fontFamily: 'Arial, sans-serif',
+    h1: {
+      fontFamily: 'Helvetica, sans-serif',
+      fontSize: 32,
+    },
+    h2: {
+      fontFamily: 'Helvetica, sans-serif',
+      fontSize: 24,
+    },
+    body1: {
+      fontSize: 16,
+    },
   },
-  fontSizes: [12, 14, 16, 20, 24, 32],
-  space: [0, 4, 8, 16, 32, 64],
-};
+  spacing: [0, 4, 8, 16, 32, 64],
+});
 
 export default theme;

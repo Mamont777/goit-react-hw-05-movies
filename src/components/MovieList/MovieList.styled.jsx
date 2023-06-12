@@ -44,7 +44,6 @@ export const MoviePoster = styled.img`
 
 export const MovieTitle = styled.p`
   margin-top: 15px;
-  color: whitesmoke;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

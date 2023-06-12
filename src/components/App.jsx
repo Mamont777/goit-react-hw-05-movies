@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'theme-ui';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from '../Styles/theme';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
